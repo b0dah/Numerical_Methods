@@ -42,9 +42,9 @@ func Fx(arg: [Double] )->[Double] {
     //        x-y*y - z,
     //        x-y-z*z]
     
-    return [(x-1)*(x-1) + cos(5*x*y) - 1 ,
-            2*exp(z-1) + sin(x+1-2*z*z) - 2,
-            x*x+y*y-z]
+    /*+not linear*/// return [(x-1)*(x-1) + cos(5*x*y) - 1 , 2*exp(z-1) + sin(x+1-2*z*z) - 2, x*x+y*y-z] // 1/0/1
+    /*linear*///return [x+y-z, x-y+z-2, z-1] // 1/0/1
+    /*polinomial*/return [x*x*x - y*y + z, x*x + y*y + z*z - 2, z-1] // 0/-1/1
 }
 
 /*double Derivative(double x0, double accuracy){
