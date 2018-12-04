@@ -24,12 +24,19 @@ matrix = [[1,2],[3,4]]
 
 
 // F U N S
-func Fx(x: Double, y: Double)->[Double] {
+func Fx(arg: [Double] )->[Double] {
+    var x = arg[0], y=arg[1], z: Double = 0
+    if arg.count == 3 { z = arg[2] }
+    
     return [x*x - y,
             x-y*y]
     
     //return [(x-1)*(x-1) + y*y - 1,
            // x*x - y]
+    
+    //return [sin(x*y*y) + cos(z-1),
+    //        pow((x-2), 3) - y*z + 2,
+    //        8*x + 7*y - z - exp(y*y) - 6 ]
 }
 
 /*double Derivative(double x0, double accuracy){
@@ -143,21 +150,40 @@ func InversedMatrix(a:[[Double]]) -> [[Double]]{
     return result
 }
     
-func Ak(x0: Double, y0: Double, accuracy: Double = 0.000001)->[[Double]] { //  2x2
+func Ak(x0: [Double], accuracy: Double = 0.000001)->[[Double]] { //  2x2
     let h : Double = accuracy
-    var J : [[Double]] = [[0,0], [0,0]]
+    var J : [[Double]]
+    
+    if x0.count == 2 {
+         J = [[0,0], [0,0]]     // 2 DIMS
+    
+        for fun_ind in 0..<x0.count{
+                for arg_ind in 0..<x0.count {
+                    switch arg_ind{
+                    case 0: J[fun_ind][arg_ind] = (Fx(arg: [x0[0] + h, x0[1]])[fun_ind] - Fx(arg: [x0[0] - h, x0[1] ])[fun_ind])/(2*h);
+                    case 1: J[fun_ind][arg_ind] = (Fx(arg: [x0[0], x0[1] + h ])[fun_ind] - Fx(arg: [x0[0], x0[1] - h ])[fun_ind])/(2*h);
+                    default: J[fun_ind][arg_ind] = (Fx(arg: [x0[0] + h, x0[1]])[fun_ind] - Fx(arg: [x0[0] - h, x0[1] ])[fun_ind])/(2*h);
+                    }
+                }
+            }
+    }
+    else {
+        J = [[0,0,0], [0,0,0], [0,0,0]]  // 3 DIM
         
-        for fun_ind in 0...1{
-            for arg_ind in 0...1{
+        for fun_ind in 0..<x0.count{
+            for arg_ind in 0..<x0.count {
                 switch arg_ind{
-                case 0: J[fun_ind][arg_ind] = (Fx(x: x0 + h, y: y0)[fun_ind] - Fx(x: x0 - h, y: y0)[fun_ind])/(2*h);
-                case 1: J[fun_ind][arg_ind] = (Fx(x: x0, y: y0 + h)[fun_ind] - Fx(x: x0 , y: y0 - h)[fun_ind])/(2*h);
-                default: J[fun_ind][arg_ind] = (Fx(x: x0 + h, y: y0)[fun_ind] - Fx(x: x0 - h, y: y0)[fun_ind])/(2*h);
+                case 0: J[fun_ind][arg_ind] = (Fx(arg: [x0[0] + h, x0[1], x0[2] ])[fun_ind] - Fx(arg: [x0[0] - h, x0[1], x0[2]])[fun_ind])/(2*h);
+                case 1: J[fun_ind][arg_ind] = (Fx(arg: [x0[0], x0[1] + h, x0[2]])[fun_ind] - Fx(arg: [x0[0], x0[1] - h, x0[2]])[fun_ind])/(2*h);
+                case 2: J[fun_ind][arg_ind] = (Fx(arg: [x0[0], x0[1], x0[2] + h])[fun_ind] - Fx(arg: [x0[0], x0[1], x0[2] - h])[fun_ind])/(2*h);
+                    
+                default: J[fun_ind][arg_ind] = (Fx(arg: [x0[0] + h, x0[1], x0[2] ])[fun_ind] - Fx(arg: [x0[0] - h, x0[1], x0[2]])[fun_ind])/(2*h);
                 }
             }
         }
-        return InversedMatrix(a: J)
-        //return J
+    }
+        //return InversedMatrix(a: J)
+        return J
 }
 
 func vectorSubstraction(v1: [Double], v2: [Double]) -> [Double] {
@@ -186,14 +212,15 @@ func DoubleStepNewtonProcess(x0: [Double], eps: Double = 0.0001) -> [Double] { /
     repeat {
         itr+=1
         //x_previous = x
-        /*1*/z = vectorSubstraction(v1: x, v2: multiplyMatrixbyVector(matrix: Ak(x0: x[0], y0: x[1]), vector: Fx(x: x[0], y: x[1])))
-        /*2*/x = vectorSubstraction(v1: z, v2: multiplyMatrixbyVector(matrix: Ak(x0: x[0], y0: x[1]/* <- pay attention */), vector: Fx(x: z[0], y: z[1])))
+        /*1*/z = vectorSubstraction(v1: x, v2: multiplyMatrixbyVector(matrix: Ak(x0: x), vector: Fx(arg: x)))
+        /*2*/x = vectorSubstraction(v1: z, v2: multiplyMatrixbyVector(matrix: Ak(x0: x/* <- x must be here */), vector: Fx(arg: z)))
     }
     while  ( vectorNorm(v: (vectorSubstraction(v1: x, v2: z))) > eps )
     
     print("\(itr) iterations")
     return x
 }
+
 
 //// P R O G R A M
     //print(multiplyMatrixbyVector(matrix: [[1,2],[3,4]], vector: [1,2]))
@@ -206,10 +233,13 @@ func DoubleStepNewtonProcess(x0: [Double], eps: Double = 0.0001) -> [Double] { /
 
     print(InversedMatrix(a: [[2,5,7], [6,3,4], [5,-2,-3]]))*/
 
-    //print(Ak(x0: 1, y0: 1, accuracy: 0.001))
+    //print(Ak(x0: [1,1]))
+    //print(Ak(x0: [1,1,1]))
+
 
     //print(vectorSubstraction(v1: [1,2,3], v2: [4,5,6]))
     //print(vectorNorm(v: [1, 0, -100, 0.2]))
 
-    print(DoubleStepNewtonProcess(x0: [0.4, 0.4]))
+    //print(DoubleStepNewtonProcess(x0: [0.1, 0.1, 0.1]))
+    print(DoubleStepNewtonProcess(x0: [0.1, 0.1]))
 
