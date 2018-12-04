@@ -26,21 +26,25 @@ matrix = [[1,2],[3,4]]
 // F U N S
 func Fx(arg: [Double] )->[Double] {
     var x = arg[0], y=arg[1], z: Double = 0
-    if arg.count == 3 { z = arg[2] }
+    if arg.count == 3 {
+        z = arg[2] }
     
-    return [x*x - y,
-          x-y*y]
+    //return [x*x - y,  x-y*y]
     
-    //return [(x-1)*(x-1) + y*y - 1,
-           // x*x - y]
+    //return [(x-1)*(x-1) + y*y - 1,  x*x - y]
     
-   /* return [sin(x*y*y) + cos(z-1),
+    /*return [sin(x*y*y) + cos(z-1),
             pow((x-2), 3) - y*z + 2,
-            8*x + 7*y - z - exp(y*y) - 6 ] */
+            8*x + 7*y - z - exp(y*y) - 6 ]
+    */
     
-    return [x*x - y - z,
-            x-y*y - z,
-            x-y-z*z]
+    //return [x*x - y - z,
+    //        x-y*y - z,
+    //        x-y-z*z]
+    
+    return [(x-1)*(x-1) + cos(5*x*y) - 1 ,
+            2*exp(z-1) + sin(x+1-2*z*z) - 2,
+            x*x+y*y-z]
 }
 
 /*double Derivative(double x0, double accuracy){
@@ -208,7 +212,7 @@ func vectorNorm(v: [Double]) -> Double { // infinity-norm of the vector
     return max
 }
 
-func DoubleStepNewtonProcess(x0: [Double], eps: Double = 0.0001) -> [Double] { // 2X2
+func DoubleStepNewtonProcess(x0: [Double], eps: Double = 0.00001) -> [Double] { // 2X2
     var z = x0 // начальное приближение
     var x = x0
     //var x_previous = [Double](repeatElement(0, count: x0.count))
@@ -239,12 +243,12 @@ func DoubleStepNewtonProcess(x0: [Double], eps: Double = 0.0001) -> [Double] { /
     print(InversedMatrix(a: [[2,5,7], [6,3,4], [5,-2,-3]]))*/
 
     //print(Ak(x0: [1,1]))
-    print(Ak(x0: [1,1,1]))
+    //print(Ak(x0: [1,1,1]))
 
 
     //print(vectorSubstraction(v1: [1,2,3], v2: [4,5,6]))
     //print(vectorNorm(v: [1, 0, -100, 0.2]))
 
-    //print(DoubleStepNewtonProcess(x0: [0.4, 0.4, 0.4]))
+    print(DoubleStepNewtonProcess(x0: [0.9, 0.2, 0.9]))
     //print(DoubleStepNewtonProcess(x0: [0.3, 0.3]))
 
