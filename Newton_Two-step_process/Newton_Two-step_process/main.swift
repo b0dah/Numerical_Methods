@@ -29,14 +29,18 @@ func Fx(arg: [Double] )->[Double] {
     if arg.count == 3 { z = arg[2] }
     
     return [x*x - y,
-            x-y*y]
+          x-y*y]
     
     //return [(x-1)*(x-1) + y*y - 1,
            // x*x - y]
     
-    //return [sin(x*y*y) + cos(z-1),
-    //        pow((x-2), 3) - y*z + 2,
-    //        8*x + 7*y - z - exp(y*y) - 6 ]
+   /* return [sin(x*y*y) + cos(z-1),
+            pow((x-2), 3) - y*z + 2,
+            8*x + 7*y - z - exp(y*y) - 6 ] */
+    
+    return [x*x - y - z,
+            x-y*y - z,
+            x-y-z*z]
 }
 
 /*double Derivative(double x0, double accuracy){
@@ -54,9 +58,10 @@ func Fx(arg: [Double] )->[Double] {
 }*/
 
 func multiplyMatrixbyVector(matrix: [[Double]], vector: [Double])-> [Double]{
-    var res = [Double]()
+    var res = [Double](repeating: 0, count: vector.count)
     for i in 0..<vector.count {
-        res.append(0)
+        //res.append(0)
+        res[i] = 0
         for j in 0..<vector.count {
             res[i]+=matrix[i][j]*vector[j]
         }
@@ -168,7 +173,7 @@ func Ak(x0: [Double], accuracy: Double = 0.000001)->[[Double]] { //  2x2
             }
     }
     else {
-        J = [[0,0,0], [0,0,0], [0,0,0]]  // 3 DIM
+        J = [[0,0,0], [0,0,0], [0,0,0]]  // 3 DIMS
         
         for fun_ind in 0..<x0.count{
             for arg_ind in 0..<x0.count {
@@ -182,8 +187,8 @@ func Ak(x0: [Double], accuracy: Double = 0.000001)->[[Double]] { //  2x2
             }
         }
     }
-        //return InversedMatrix(a: J)
-        return J
+        return InversedMatrix(a: J)
+        //return J
 }
 
 func vectorSubstraction(v1: [Double], v2: [Double]) -> [Double] {
@@ -234,12 +239,12 @@ func DoubleStepNewtonProcess(x0: [Double], eps: Double = 0.0001) -> [Double] { /
     print(InversedMatrix(a: [[2,5,7], [6,3,4], [5,-2,-3]]))*/
 
     //print(Ak(x0: [1,1]))
-    //print(Ak(x0: [1,1,1]))
+    print(Ak(x0: [1,1,1]))
 
 
     //print(vectorSubstraction(v1: [1,2,3], v2: [4,5,6]))
     //print(vectorNorm(v: [1, 0, -100, 0.2]))
 
-    //print(DoubleStepNewtonProcess(x0: [0.1, 0.1, 0.1]))
-    print(DoubleStepNewtonProcess(x0: [0.1, 0.1]))
+    //print(DoubleStepNewtonProcess(x0: [0.4, 0.4, 0.4]))
+    //print(DoubleStepNewtonProcess(x0: [0.3, 0.3]))
 
