@@ -29,9 +29,10 @@ func Fx(arg: [Double] )->[Double] {
     if arg.count == 3 {
         z = arg[2] }
     
+    
     //return [x*x - y,  x-y*y]
     
-    //return [(x-1)*(x-1) + y*y - 1,  x*x - y]
+    return [(x-1)*(x-1) + y*y - 1,  x - y*y]
     
     /*return [sin(x*y*y) + cos(z-1),
             pow((x-2), 3) - y*z + 2,
@@ -42,9 +43,9 @@ func Fx(arg: [Double] )->[Double] {
     //        x-y*y - z,
     //        x-y-z*z]
     
-    /*+not linear*/// return [(x-1)*(x-1) + cos(5*x*y) - 1 , 2*exp(z-1) + sin(x+1-2*z*z) - 2, x*x+y*y-z] // 1/0/1
+    /*+not linear*/ //return [(x-1)*(x-1) + cos(5*x*y) - 1 , 2*exp(z-1) + sin(x+1-2*z*z) - 2, x*x+y*y-z] // 1/0/1
     /*linear*///return [x+y-z, x-y+z-2, z-1] // 1/0/1
-    /*polinomial*/return [x*x*x - y*y + z, x*x + y*y + z*z - 2, z-1] // 0/-1/1
+    /*polinomial*///return [x*x*x - y*y + z, x*x + y*y + z*z - 2, z-1] // 0/-1/1
 }
 
 /*double Derivative(double x0, double accuracy){
@@ -249,6 +250,6 @@ func DoubleStepNewtonProcess(x0: [Double], eps: Double = 0.00001) -> [Double] { 
     //print(vectorSubstraction(v1: [1,2,3], v2: [4,5,6]))
     //print(vectorNorm(v: [1, 0, -100, 0.2]))
 
-    print(DoubleStepNewtonProcess(x0: [0.9, 0.2, 0.9]))
-    //print(DoubleStepNewtonProcess(x0: [0.3, 0.3]))
+    //print(DoubleStepNewtonProcess(x0: [0.9, 0.2, 0.9 ]))
+    print(DoubleStepNewtonProcess(x0: [0.7, -0.7]))
 
