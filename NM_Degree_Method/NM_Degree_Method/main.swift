@@ -50,7 +50,15 @@ func v_average(a:[(Double, Bool)]) -> Double {
 }
 
 func m_square(a: [[Double]]) -> [[Double]] {
-    <#function body#>
+    var res = Array(repeating: Array(repeating: 0.0, count: a.count), count: a.count)
+    for i in 0..<a.count {
+        for j in 0..<a.count {
+            for k in 0..<a.count {
+                res[i][j] += a[i][k]*a[k][j]
+            }
+        }
+    }
+    return res
 }
 
 func returnMinIndElement(a: [(Double, Bool)] ) -> Double {
@@ -82,17 +90,20 @@ let A : [[Double]] = /*+*/ //[[3,1],
           // [5,6,-5]]
     
   /*+*/ // [[2,1],
-        //  [2,3]]
+         // [2,3]]
 
-/*+*/ [[2,0,2], //+++
-       [0,2,2],
-       [2,2,0]]
+/*+*/[[3,4],
+     [5,3]]
+
+/*+*/ //[[2,0,2], //+++
+      // [0,2,2],
+        //[2,2,0]]
 
 
-let n = A.count, ε = 1e-8, δ = 1e-3
-var y : [Double] = Array(repeating: 0.1, count: n),
-λ = Array(repeating: (0.1,false), count: n),
-λ_prev = Array(repeating: (0.1,false), count: n)
+let n = A.count, ε = 1e-8, δ = 1e-12
+var y : [Double] = Array(repeating: 5, count: n),
+λ = Array(repeating: (1.0 ,false), count: n),
+λ_prev = Array(repeating: (1.0, false), count: n)
 //λ = [lambda]() , λ_prev = [lambda]()
 
 //λ.reserveCapacity(n)
@@ -102,10 +113,15 @@ var AccuracyReached = false, k = 0
 ///////////////////////// computing ///////////////
 
 var x: [Double] = y, x_prev : [Double] = nlized_v(a: y)
+var A_cur = A, degree = 1.0;
 
 while true {
-    y = matrix_x_vector(a: A, x: x)
+    k+=1
+    //y = matrix_x_vector(a: A, x: x)
+    y = matrix_x_vector(a: A_cur, x: x)
     x = nlized_v(a: y)
+    
+    A_cur = m_square(a: A_cur)
 /*4*/
     //if (k>0) {
 
@@ -113,24 +129,27 @@ while true {
             if fabs(x_prev[i]) >= δ {
                 //λ[i].value = y[i]/x_prev[i] λ[i].good = true
                 λ[i] = (y[i]/x_prev[i], true)
+                λ[i].0 = pow( λ[i].0, degree) //
             }
             
-            if  ( λ[i].1 == true ) && ( fabs(λ[i].0 - λ_prev[i].0) > ε ) {
+            if ( λ[i].1 == true ) && ( fabs(λ[i].0 - λ_prev[i].0) > ε ) {
                 AccuracyReached = false
             }
         }
+    
+    //if k>5 {break}
     //}
     
     if AccuracyReached {break} // -->>
     
     x_prev = x
     λ_prev = λ
-    
-    k+=1
+    degree *= 0.5
+   
     AccuracyReached = true
 }
 
-//print("Λ = \(v_average(a: λ))    x = \(x)") //// ???????????????
-print("ANS : Λ = \(returnMinIndElement(a: λ))    x = \(x)")
+print("Λ = \(v_average(a: λ))    x = \(x)") //// ???????????????
+//print("  ANS : Λ = \(returnMinIndElement(a: λ))    x = \(x)")
 print(λ)
 print(k)
