@@ -37,9 +37,23 @@ func matrix_x_vector(a: [[Double]], x: [Double])->[Double] {
     return res
 }
 
-func v_average(a:[(Double, Bool)]) -> Double {
+func v_average(a:[(Double, Bool)], Eps: Double) -> Double {
     var summ = 0.0, n = 0
+    var convergence = true;
+    var max_abs = fabs(a[0].0)
     
+    for i in 0..<a.count{
+        for j in 1..<a.count{
+            if fabs(a[j].0) > max_abs {max_abs = fabs(a[j].0) }
+            if a[i].1 == true && a[j].1 == true {
+                if fabs(a[i].0 - a[j].0) > 100*Eps {
+                    convergence = false
+                }
+            }
+        }
+    }
+   
+    if convergence {
     for i in 0..<a.count{
         if a[i].1 == true {
             summ+=a[i].0
@@ -47,7 +61,11 @@ func v_average(a:[(Double, Bool)]) -> Double {
         }
     }
     return summ/Double(n)
+    }
+    
+    else {return max_abs}
 }
+
 
 func m_square(a: [[Double]]) -> [[Double]] {
     var res = Array(repeating: Array(repeating: 0.0, count: a.count), count: a.count)
@@ -76,8 +94,12 @@ func returnMinIndElement(a: [(Double, Bool)] ) -> Double {
 
 ////////// DATA /////////////////////////////////////
 
-let A : [[Double]] = /*+*/ //[[3,1],
-                            //[0,2]]
+let A : [[Double]] = /*+*/ [[3,1], //&&
+                            [0,2]]
+
+                    //[[1, 0], //&&
+                    //[1,-5]]
+
 //[[2,-1],
 // [-1,2]]
 
@@ -89,18 +111,18 @@ let A : [[Double]] = /*+*/ //[[3,1],
           // [3,4,3],
           // [5,6,-5]]
     
-  /*+*/ // [[2,1],
+  /*+*/  //[[2,1],
          // [2,3]]
 
-/*+*/[[3,4],
-     [5,3]]
+/*+*///[[3,4],
+      //[5,3]]
 
 /*+*/ //[[2,0,2], //+++
       // [0,2,2],
-        //[2,2,0]]
+      // [2,2,0]]
 
 
-let n = A.count, ε = 1e-8, δ = 1e-12
+let n = A.count, ε = 1e-5, δ = 1e-12
 var y : [Double] = Array(repeating: 5, count: n),
 λ = Array(repeating: (1.0 ,false), count: n),
 λ_prev = Array(repeating: (1.0, false), count: n)
@@ -123,22 +145,21 @@ while true {
     
     A_cur = m_square(a: A_cur)
 /*4*/
-    //if (k>0) {
-
+    print("-> ")
+    
         for i in 0..<λ.count {
+            print("  \(λ[i].0)")
             if fabs(x_prev[i]) >= δ {
                 //λ[i].value = y[i]/x_prev[i] λ[i].good = true
                 λ[i] = (y[i]/x_prev[i], true)
-                λ[i].0 = pow( λ[i].0, degree) //
+                λ[i].0 = pow( fabs(λ[i].0), degree) //
             }
             
             if ( λ[i].1 == true ) && ( fabs(λ[i].0 - λ_prev[i].0) > ε ) {
                 AccuracyReached = false
             }
         }
-    
-    //if k>5 {break}
-    //}
+
     
     if AccuracyReached {break} // -->>
     
@@ -149,7 +170,9 @@ while true {
     AccuracyReached = true
 }
 
-print("Λ = \(v_average(a: λ))    x = \(x)") //// ???????????????
+print("Λ = \(v_average(a: λ, Eps: ε))    x = \(x)") //// ???????????????
 //print("  ANS : Λ = \(returnMinIndElement(a: λ))    x = \(x)")
 print(λ)
 print(k)
+
+//print(" last flag = \(")
