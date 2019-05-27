@@ -7,12 +7,13 @@
 //
 
 import Foundation
+
 func f(x: Double, y:Double)-> Double{
-    return x-y*y
+    return 2*pow(x, 3) + 2*y/x
 }
 
-let a: Double = 0,
-b: Double = 1, h: Double = 1e-1
+let a: Double = 1,
+    b: Double = 2, h: Double = 1e-2
 
 let n=Int((b-a)/h+1);
 
@@ -21,13 +22,14 @@ y = [Double](repeating: 0.0, count: n),
 del = [Double](repeating: 0.0, count: n)
 
 x[0] = a
-y[0] = 0.0
+y[0] = 1
 
 for i in 1..<n {
+    
     x[i]=a+Double(i)*h;
-    if (i<=3)
-    {
-        y[i]=y[i-1]+h*f(x: x[i-1], y: y[i-1]);
+    
+    if (i<=3) {
+        y[i]=y[i-1] + h*f(x: x[i-1], y: y[i-1]);
         del[i]=0.0;
     }
     else
