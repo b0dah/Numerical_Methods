@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,7 @@
 		BC9DE21A229D182D0092B2DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC9DE219229D182D0092B2DD /* Assets.xcassets */; };
 		BC9DE21D229D182D0092B2DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC9DE21B229D182D0092B2DD /* LaunchScreen.storyboard */; };
 		BC9DE228229D182D0092B2DD /* AdamsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9DE227229D182D0092B2DD /* AdamsUITests.swift */; };
+		BC9DE233229D50120092B2DD /* AdamsMethodClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9DE232229D50120092B2DD /* AdamsMethodClass.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,7 @@
 		BC9DE223229D182D0092B2DD /* AdamsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AdamsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC9DE227229D182D0092B2DD /* AdamsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdamsUITests.swift; sourceTree = "<group>"; };
 		BC9DE229229D182D0092B2DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BC9DE232229D50120092B2DD /* AdamsMethodClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdamsMethodClass.swift; sourceTree = "<group>"; };
 		F3B152495D30BBFB67F11554 /* Pods-AdamsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdamsUITests.release.xcconfig"; path = "Target Support Files/Pods-AdamsUITests/Pods-AdamsUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -83,7 +85,6 @@
 				188FBBF7154C91BC0360C465 /* Pods-AdamsUITests.debug.xcconfig */,
 				F3B152495D30BBFB67F11554 /* Pods-AdamsUITests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -112,6 +113,7 @@
 			children = (
 				BC9DE212229D182A0092B2DD /* AppDelegate.swift */,
 				BC9DE214229D182A0092B2DD /* ViewController.swift */,
+				BC9DE232229D50120092B2DD /* AdamsMethodClass.swift */,
 				BC9DE216229D182A0092B2DD /* Main.storyboard */,
 				BC9DE219229D182D0092B2DD /* Assets.xcassets */,
 				BC9DE21B229D182D0092B2DD /* LaunchScreen.storyboard */,
@@ -298,6 +300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC9DE215229D182A0092B2DD /* ViewController.swift in Sources */,
+				BC9DE233229D50120092B2DD /* AdamsMethodClass.swift in Sources */,
 				BC9DE213229D182A0092B2DD /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
