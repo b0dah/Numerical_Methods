@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Adams" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ird-Pz-uPh">
+                                <rect key="frame" x="0.0" y="146" width="375" height="854"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iur-Ma-SuS">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="hola" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wXw-P6-eZH">
+                                                <rect key="frame" x="166" y="769" width="43" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S3e-i6-TiD" customClass="LineChartView" customModule="Charts">
+                                                <rect key="frame" x="18" y="18" width="339" height="255"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1000" id="JK8-AG-a7F"/>
+                                            <constraint firstItem="wXw-P6-eZH" firstAttribute="leading" secondItem="iur-Ma-SuS" secondAttribute="leading" constant="166" id="pWM-Ls-AS5"/>
+                                            <constraint firstItem="wXw-P6-eZH" firstAttribute="centerX" secondItem="iur-Ma-SuS" secondAttribute="centerX" id="ybg-cE-VJO"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="iur-Ma-SuS" firstAttribute="top" secondItem="Ird-Pz-uPh" secondAttribute="top" id="2He-gU-uJz"/>
+                                    <constraint firstAttribute="trailing" secondItem="iur-Ma-SuS" secondAttribute="trailing" id="LNg-wX-Yfo"/>
+                                    <constraint firstItem="iur-Ma-SuS" firstAttribute="centerX" secondItem="Ird-Pz-uPh" secondAttribute="centerX" id="RBC-qJ-MH0"/>
+                                    <constraint firstAttribute="bottom" secondItem="iur-Ma-SuS" secondAttribute="bottom" id="hvF-P0-Y8l"/>
+                                    <constraint firstItem="iur-Ma-SuS" firstAttribute="leading" secondItem="Ird-Pz-uPh" secondAttribute="leading" id="rSL-rh-2m6"/>
+                                </constraints>
+                            </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f0B-PD-dbX">
+                                <rect key="frame" x="113" y="73" width="149" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="0.65400256850000005" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Draw!">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="drawChartButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wX7-Tb-Tv8"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Ird-Pz-uPh" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="CN7-Bb-EsM"/>
+                            <constraint firstItem="Ird-Pz-uPh" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="GXg-iM-e2X"/>
+                            <constraint firstItem="Ird-Pz-uPh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="YKc-oP-zf3"/>
+                            <constraint firstItem="Ird-Pz-uPh" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="hmG-TV-CCV"/>
+                            <constraint firstItem="Ird-Pz-uPh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="126" id="qEJ-cW-tUq"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <size key="freeformSize" width="375" height="1000"/>
+                    <connections>
+                        <outlet property="firstChartView" destination="S3e-i6-TiD" id="RSR-Do-Eha"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="138.40000000000001" y="113.3433283358321"/>
+        </scene>
+    </scenes>
+</document>
