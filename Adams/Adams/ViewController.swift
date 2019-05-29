@@ -26,8 +26,8 @@ func f827(x: Double, y: [Double]) -> [Double] {
 }
 
 func s827(x: Double) -> [Double] {
-    return [ -exp(-x) - exp( 2*x) + cos(x) + 2*sin(x),
-             +exp(-x) - 2 * exp( 2*x) - 3*cos(x) - sin(x) ]
+    return [ exp(-x) + exp( 2*x) - cos(x) - 2*sin(x),
+             -exp(-x) + 2 * exp( 2*x) + 3*cos(x) + sin(x) ]
 }
 
 func f831(x: Double, y: [Double]) -> [Double] {

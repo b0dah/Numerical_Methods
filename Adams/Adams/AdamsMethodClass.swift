@@ -31,7 +31,7 @@ class Adams {
         
         //^^initial
         x[0] = a
-        y[0] = [1,-2,0]
+        y[0] = y0
         
         // Runge-Kutta Meth
         for funcNumb in 0..<size {
