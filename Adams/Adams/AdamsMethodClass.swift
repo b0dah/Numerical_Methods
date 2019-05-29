@@ -10,7 +10,7 @@ import Foundation
 
 class Adams {
  
-    let h: Double = 4e-2, N: Int
+    let h: Double = 4e-2, N: Int, EPS = 1e-5
     
     let argValues: [Double], resultValues: [[Double]]
     var solutionValues: [[Double]] = []
@@ -44,14 +44,27 @@ class Adams {
             
             for funcNumb in 0..<size {
                 
-                // explicit Adams
+                // explicit Adams (INIT SIMPLE ITERATIONS)
                 y[i][funcNumb] = y[i-1][funcNumb] + h/2 * ( 3 * f( x[i-1], y[i-1])[funcNumb] - f( x[i-2], y[i-2])[funcNumb] )
             }
             
             for funcNumb in 0..<size {
                 
                 // implicit Adams
-                y[i][funcNumb] = y[i-1][funcNumb] + h/2 * (  f( x[i], y[i])[funcNumb] + f( x[i-1], y[i-1])[funcNumb] )
+                //y[i][funcNumb] = y[i-1][funcNumb] + h/2 * (  f( x[i], y[i])[funcNumb] + f( x[i-1], y[i-1])[funcNumb] )
+                
+                var prevY = 0.0
+                var iter = 0
+                
+                while fabs(prevY - y[i][funcNumb]) > EPS { // simple iterations
+                    
+                    prevY = y[i][funcNumb]
+                    
+                    y[i][funcNumb] = y[i-1][funcNumb] + h/2 * (  f( x[i], y[i])[funcNumb] + f( x[i-1], y[i-1])[funcNumb] )
+                    
+                    iter+=1
+                }
+                print(iter," iterations")
             }
             
             print(y[i])
