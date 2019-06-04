@@ -30,15 +30,16 @@ func s827(x: Double) -> [Double] {
              -exp(-x) + 2 * exp( 2*x) + 3*cos(x) + sin(x) ]
 }
 
-func f831(x: Double, y: [Double]) -> [Double] {
-    return [ y[1] + 2*exp(x),
-             y[0] + x * x,
+func f835(x: Double, y: [Double]) -> [Double] {
+    return [ 2*y[0] - 4 * y[1],
+             y[0] - 3 * y[1] + 3 * exp(x),
              0]
 }
 
-func s831(x: Double/*, y: [Double]*/) -> [Double] {
-    return [ exp(x) + 2*exp( -x) + x*exp(x) - x*x-2,
-             exp(x) - 2*exp( -x) + (x-1) * exp(x)-2*x ]
+func s835(x: Double/*, y: [Double]*/) -> [Double] {
+    return [ 4/Double(3) * exp(x) - 4/Double(3) * exp( -2 * x) - 4 * x * exp(x),
+             1/Double(3) * exp(x) - 4/Double(3) * exp( -2 * x) - (x-1) * exp(x),
+             0 ]
 }
 
 
@@ -51,7 +52,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var secondChartView: LineChartView!
     
     @IBAction func drawChartButton(_ sender: UIButton) {
-        EXAMPLE *= -1
+        EXAMPLE += 1
         drawCharts()
     }
     
@@ -117,6 +118,8 @@ class ViewController: UIViewController {
         switch EXAMPLE {
         case 1:
             example1 = Adams(f: f826, a: 0, b: 1, y0: [1,-2], solution: s826, size: 2)
+        case 2:
+            example1 = Adams(f: f835, a: 0, b: 1, y0: [0.0,0.0], solution: s835, size: 2)
         default:
             example1 = Adams(f: f827, a: 0, b: 2, y0: [1,4], solution: s827, size: 2)
         }
