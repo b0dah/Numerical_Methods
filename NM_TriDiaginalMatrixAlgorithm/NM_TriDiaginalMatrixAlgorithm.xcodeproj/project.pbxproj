@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC19C33B22A70A2000FCC618 /* boundaryValueClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC19C33A22A70A2000FCC618 /* boundaryValueClass.swift */; };
 		BC9887F822A3B32A00A92BB6 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9887F722A3B32A00A92BB6 /* main.swift */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +24,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BC19C33A22A70A2000FCC618 /* boundaryValueClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = boundaryValueClass.swift; sourceTree = "<group>"; };
 		BC9887F422A3B32A00A92BB6 /* NM_TriDiaginalMatrixAlgorithm */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = NM_TriDiaginalMatrixAlgorithm; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC9887F722A3B32A00A92BB6 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -57,6 +59,7 @@
 		BC9887F622A3B32A00A92BB6 /* NM_TriDiaginalMatrixAlgorithm */ = {
 			isa = PBXGroup;
 			children = (
+				BC19C33A22A70A2000FCC618 /* boundaryValueClass.swift */,
 				BC9887F722A3B32A00A92BB6 /* main.swift */,
 			);
 			path = NM_TriDiaginalMatrixAlgorithm;
@@ -119,6 +122,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC19C33B22A70A2000FCC618 /* boundaryValueClass.swift in Sources */,
 				BC9887F822A3B32A00A92BB6 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
