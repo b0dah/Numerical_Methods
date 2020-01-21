@@ -167,7 +167,7 @@ while true {
     λ_prev = λ
     degree *= 0.5
    
-    AccuracyReached = true
+    AccuracyReached = true 
 }
 
 print("Λ = \(v_average(a: λ, Eps: ε))    x = \(x)") //// ???????????????
